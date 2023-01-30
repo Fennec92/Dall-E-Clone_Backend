@@ -28,6 +28,7 @@ openAiRouter.post("/", async (request, response) => {
         response.status(200).json({ image: getImage });
     } catch (error) {
         console.log(error);
+        console.log(error?.response.data.error.message);
         response.status(500).send(error?.response.data.error.message);
     }
 });
