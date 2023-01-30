@@ -34,7 +34,7 @@ postRouter.post("/", async (request, response) => {
 
         response.json({ success: true, data: newPost });
     } catch (error) {
-        res.json({ success: false, error: error });
+        response.json({ success: false, error: error });
     }
 });
 
