@@ -13,12 +13,29 @@ cloudinary.config({
 
 postRouter.get("/", async (request, response) => {
     try {
-    } catch (error) {}
+        const allPosts = await Post.find({});
+        response.json({ success: true, data: allPosts });
+    } catch (error) {
+        response.json({ success: false, error: error });
+    }
 });
 
 postRouter.post("/", async (request, response) => {
     try {
-    } catch (error) {}
+        const { name, description, image } = request.body;
+
+        const imageURL = await cloudinary.uploader.upload(image);
+
+        const newPost = await Post.create({
+            name: name,
+            description: description,
+            image: imageURL.url,
+        });
+
+        response.json({ success: true, data: newPost });
+    } catch (error) {
+        res.json({ success: false, error: error });
+    }
 });
 
 export default postRouter;
