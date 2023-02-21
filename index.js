@@ -19,7 +19,7 @@ server.get("/", async (request, response) => {
 
 const startServerAndMongoDB = async () => {
     try {
-        connectToMongoDB();
+        await connectToMongoDB();
         server.listen(PORT, () => {
             console.log(`Server ist online auf dem Port ${PORT}`);
         });
